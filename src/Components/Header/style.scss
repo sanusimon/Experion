@@ -1,0 +1,102 @@
+@import '../../mixins.scss';
+
+:focus{
+    outline: 0;
+}
+
+.header{
+    .inner_{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 1.4em 2em 1em;
+        border-bottom: 1px solid #E5E5EC;
+        align-items: center
+    }
+}
+.user_name{
+    h2{
+        @include title;
+    }
+}
+.rt_bar{
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 3em;
+    .search_area{
+        display: flex;
+        align-items: center;
+        border: 1px solid #E5E5EC;
+        border-radius: 6px;
+        padding: 0 .5rem;
+        flex: 1;
+        background-color: rgba(252, 252, 255, 1);
+        .srch_icon{
+            width: 2em;
+            @include flex_box;
+            justify-content: center;
+            img{
+                width: 1em;
+            }
+        }
+        .search_field{
+            flex: 1;
+            
+            .srch_txt{
+                border: none;
+                width: 100%;
+                padding: .9rem 0;
+                background-color: rgba(252, 252, 255, 1);
+                font-size: .8em;
+                color: #041131;
+            }
+        }
+    }
+    .prof_box{
+        @include flex_box();
+        justify-content: flex-end;
+        grid-gap: 1em;
+        .first_bx{
+            display: flex;
+            grid-gap: 1em;  
+            .icon_{
+                @include flex_box;
+                flex: 1;
+            }
+        }
+        .user_prfle{
+            @include flex_box;
+            grid-gap: 12px;
+            border-left: 1px solid rgba(15, 37, 95, .6);
+            padding-left: 1em;
+            .img_{
+                width: 34px;
+                height: 34px;
+                img{
+                    border-radius: 50%;
+                    height: 100%;
+                    width: 100%;
+                    
+                }
+            }
+            .usrname{
+                position: relative;
+                flex: 1;
+                .name_{
+                    @include text_(1rem , 400, 1);
+                    margin-inline-end: 1em;
+                }
+                .usr_arow{
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 0;
+                    height: 0;
+                    border-left: 6px solid transparent;
+                    border-right: 6px solid transparent;
+                    border-top: 6px solid black;
+                }
+            }
+        }
+    }
+}

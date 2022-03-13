@@ -1,0 +1,50 @@
+@mixin title {
+    font-size: 1.9em;
+    font-weight: 700;
+    margin: 0;
+}
+@mixin flex_box() {
+    display: flex;
+    align-items: center;
+}
+
+$defaultSize:.9rem;
+$defaultOpacity:.7;
+$brandBg:#1750FF;
+$colorWhite:#ffffff;
+$defaultWeight:400;
+
+
+
+
+@mixin text_ ($fsize : $defaultSize , $fweight:$defaultWeight , $opacity : $defaultOpacity){
+    font-size: $fsize;
+    font-weight: $fweight;
+    color: #041131;
+    opacity: $opacity;
+}
+@mixin product_title {
+    font-size: 1.13em;
+    font-weight: 500;
+    color: #041131;
+}
+@mixin cart_button {
+    background: $brandBg;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $colorWhite;
+    width: 100%;
+    padding: .9em 1em;
+    border: none;
+}
+
+
+$defaultBorder :  1px solid #0F42DF;
+
+@mixin filterButton($border : $defaultBorder) {
+    font-size: .9em;
+    padding: .8em 1.5em;
+    border: $border;
+    border-radius: 6px;
+}

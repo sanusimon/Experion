@@ -1,0 +1,297 @@
+@import '../mixins.scss';
+
+.show{
+    position: relative;
+    &:after{
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #071538;
+        opacity: .7;
+        z-index: 5;
+    }
+}
+
+
+
+.wrapper{
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    .content_page{
+        margin-left: 80px;
+    }
+}
+.main_content{
+    padding: 1.4em 2em 1em ;
+}
+.product_list{
+    display: grid;
+    // grid-template-columns: repeat(4,1fr);
+    // grid-gap: 2em;
+    // column-count: 4;
+    grid-gap: 1%;
+    display: flex;
+    flex-flow: column wrap;
+    height: 100vh;
+    .item_{
+        box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+        border-radius: 8px;
+        // display: grid;
+        // grid-template-rows: 1fr auto;
+        width: 24%;
+        margin-bottom: 1em;
+        .product_image{
+            
+            img{
+                width: 100%;
+                max-width: 100%
+            }
+        }
+        .content_box{
+            padding: 1em;
+            .title_{
+                @include product_title;
+                margin: 0;
+                width: 85%;
+            }
+            .desc_{
+                @include text_;
+                margin: .5em 0 1em;
+            }
+            .price_{
+                @include text_(1em,700,1);
+            }
+            .add_to_cart{
+                margin-top: 1em;
+                opacity: 0;
+                height: 0;
+                overflow: hidden;
+                transition: all .5s ease;
+                
+                .crt_btn_{
+                    @include cart_button;
+                    cursor: pointer;
+                    
+                }
+            }
+        }
+        &:nth-child(4n+1){
+            order: 1;
+        }
+        &:nth-child(4n+2){
+            order: 2;
+        }
+        &:nth-child(4n+3){
+            order: 3;
+        }
+        &:nth-child(4n+4){
+            order: 4;
+        }
+        &:hover{
+            .content_box{
+                .add_to_cart{
+                    opacity: 1;
+                    height: auto;
+                    .crt_btn_{
+                       
+                    }
+                }  
+            } 
+        }
+    }
+}
+
+.filter_box{
+    @include flex_box;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-bottom: 2em;
+    .select_cat{
+        width: 60%;
+        .filtr_title{
+            @include text_(.9em,400,.8);
+            margin:0 0 1em;
+        }
+        .list_{
+            display: flex;
+            flex-wrap: wrap;
+            grid-gap: 12px;
+            li{
+                @include flex_box;
+                background: #E8E8FF;
+                padding: 12px;
+                grid-gap: 1em;
+                border-radius: 6px;
+                p{
+                    margin: 0;
+                    @include text_(1rem , 400 , 1);
+                }
+                .close{
+                    margin-right: .5em;
+                    span{
+                        height: 10px;
+                        width: 1.5px;
+                        margin-left: 12px;
+                        transform: rotate(45deg);
+                        background-color: #041131;
+                        display: block;
+                        position: relative;
+                        &:after{
+                            position: absolute;
+                            content: "";
+                            height: 10px;
+                            width: 1.5px;
+                            background-color: black;
+                            transform: rotate(90deg);
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .filter_rgt{
+        display: flex;
+        justify-content: flex-end;
+        flex: 1;
+        .filter_btns{
+            display: flex;
+            .filter_btn{
+                &.clear_{
+                    @include filterButton(none);
+                }
+                @include filterButton();
+            }
+        }
+        .filter_options{
+            position: fixed;
+            right: 0;
+            width: 30%;
+            background: #ffffff;
+            top: 0;
+            height: 100%;
+            z-index: 10;
+            transform: translateX(105%);
+            transition: all .3s ease;
+            padding: 2.4em 2em;
+            &.filteropen{
+                transform: none
+            }
+            .close_{
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: #F6F9FE;
+                @include flex_box;
+                justify-content: center;
+                position: absolute;
+                left: -4%;
+                top: 4%;
+                span{
+                    height: 10px;
+                    width: 1.5px;
+                    transform: rotate(45deg);
+                    background-color: #041131;
+                    display: block;
+                    position: relative;
+                    &:after{
+                        position: absolute;
+                        content: "";
+                        height: 10px;
+                        width: 1.5px;
+                        background-color: black;
+                        transform: rotate(90deg);
+                        display: block;
+                    }
+                }
+            }
+            .fl_title{
+                h3{
+                    @include text_(1.3rem , 700 , 1);
+                    margin: 0 0 1em
+                }
+            }
+            .fl_bx{
+                .item{
+                    display: flex;
+                    flex-wrap: wrap;
+                    grid-gap: 1em;
+                    margin-bottom: 2em;
+                    h3{
+                        width: 100%;
+                        @include text_(1rem , 400 ,1);
+                        margin: 0;
+                    }
+                    .half_{
+                        width: 47%;
+                        label{
+                            @include text_(.9rem , 400 , 1);
+                            .count{
+                                @include text_(.8em , 400 , .5);
+                            }
+                            .code{
+                                width: 1rem;
+                                height: 1rem;
+                                display: inline-block;
+                                border-radius: 50%;
+                                position: relative;
+                                top: 3px;
+                            }
+                        }
+                    }
+                    &.color_{
+                        
+                        .half_{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.prod_sort{
+    @include flex_box;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    .listing_title{
+        .head_{
+            @include text_(1.3rem , 400 , 1);
+            margin: 0
+        }
+    }
+    .sort_box{
+        @include flex_box;
+        .label{
+            @include text_(.9em,400,.6);
+        }
+        .select_wrp{
+            position: relative;
+            
+            .select_{
+                @include text_(.9em,400,.8);
+                padding: 12px 40px 12px 12px;
+                border-radius: 6px;
+                margin-inline-start: 1em;
+                background: transparent;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                position: relative;
+                
+            }
+            .arow_{
+                position: absolute;
+                right: 1em;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: -1;
+            }
+        }
+        
+    }
+}
